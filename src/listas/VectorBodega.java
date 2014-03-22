@@ -27,7 +27,13 @@ public class VectorBodega {
     return productos[p];
     }
     
-    public void verificarExistencia(NodoProductos x){
+    public boolean verificarExistencia(NodoProductos x, int cant){
+        
+        if(x.getExistencias()>= cant){
+            return true;            
     }
+        else 
+            return false;
     
+    }
 }
