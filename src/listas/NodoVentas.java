@@ -55,6 +55,18 @@ public class NodoVentas {
         this.siguienteVenta = siguienteVenta;
     }
     
-    
+    public boolean existeProducto(NodoProductos x, NodoVentas p){
+        
+        
+        while (( p != null) && ( x.getIdProducto() != p.getNodoProductos().getIdProducto())){
+        
+                p = p.getSiguienteVenta();       
+        }
+        if (p == null)
+            return false;
+        else
+        return x.getIdProducto() != p.getNodoProductos().getIdProducto();
+           
+    }
     
 }
