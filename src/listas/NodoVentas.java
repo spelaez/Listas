@@ -140,4 +140,21 @@ public class NodoVentas {
     
     }
     
+    public static void totalVentas(NodoAlmacen p){
+    
+    NodoVentas x = p.getSiguienteVenta();
+    double suma = 0;
+    
+    while (x != null){
+    
+        suma = suma + (x.getCantidadVendida() * x.getNodoProductos().getCostoUnidad());
+        x = x.getSiguienteVenta();
+    }
+    
+    System.out.println("Total ventas: " + suma );
+    }
+    
+    
+    
+    
 }

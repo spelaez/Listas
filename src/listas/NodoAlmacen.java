@@ -121,7 +121,7 @@ public class NodoAlmacen {
         
         while( p != cab){
             System.out.print("Id almacen: " + p.getIdAlmacen() +' '+ "Nombre almácen" + p.getNombreAlmacen());
-            //totalVentas(p);
+            NodoVentas.totalVentas(p);
             p.getSiguienteAlmacen();
         }
         
