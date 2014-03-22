@@ -69,4 +69,44 @@ public class NodoVentas {
            
     }
     
+    
+    public void insertarVentaOrdenado(NodoAlmacen cab, NodoVentas x, NodoProductos p, int cant){
+    
+    NodoVentas n,  a;
+    
+    n = new NodoVentas(p,  cant, p.getCostoUnidad());
+    if (cab.getSiguienteVenta() == null){
+        n.setSiguienteVenta(null);
+        cab.setSiguienteVenta(n);
+    }
+    else{
+        a = buscarAnterior(cab, n.getNodoProductos().getIdProducto());    
+        n.setSiguienteVenta(a.getSiguienteVenta());
+        a.setSiguienteVenta(n);
+            
+        }
+    }
+    
+    public NodoVentas buscarAnterior(NodoAlmacen cab, int id){
+    
+    int sw = 0;
+    NodoVentas p, a;
+    p = cab.getSiguienteVenta();
+    a = null;
+        while(p != null && sw == 0){
+        if(p.getNodoProductos().getIdProducto() < id ){
+        
+         a = p;
+         p = p.getSiguienteVenta();
+        }
+        else {
+        
+        sw = 1;
+        
+        }
+        }
+        
+        return a; 
+    }
+    
 }
