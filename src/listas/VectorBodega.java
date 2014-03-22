@@ -27,5 +27,7 @@ public class VectorBodega {
     return productos[p];
     }
     
+    public void verificarExistencia(NodoProductos x){
+    }
     
 }

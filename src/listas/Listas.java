@@ -27,7 +27,7 @@ public class Listas {
         
         
         System.out.println("¿Qué desea hacer?");
-        System.out.println("Ingrese 1 para agregar un nuevo almacén");
+        System.out.println("Ingrese 1 para agregar un nuevo almacén, 2 para Agregar un nuevo producto");
         opcion=scn.nextInt();
         
         while(opcion != 0){
@@ -41,7 +41,7 @@ public class Listas {
                     break;
                 
             case 2:
-                System.out.print("Ingrese nombre del producto, existencia y costo por unidad");
+                System.out.println("Ingrese nombre del producto, existencia y costo por unidad");
                 String np=scn.next();
                 int ex = scn.nextInt();
                 double cu = scn.nextDouble();
@@ -51,6 +51,9 @@ public class Listas {
                 
                 break;
                 
+            case 3:
+                
+           
             case 0: System.exit(0);
                     }
                     System.out.println("¿Qué desea hacer?");
