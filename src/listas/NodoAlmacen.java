@@ -98,6 +98,35 @@ public class NodoAlmacen {
         return (A);        
         
     }
+    
+    public void eliminarAlmacen(NodoAlmacen cab, int id){
+        
+        NodoAlmacen p = cab.getSiguienteAlmacen(), ant=p ;
+               
+        while (p.getIdAlmacen() != id){
+            ant = p;
+            p = p.getSiguienteAlmacen();
+        }
+        
+        p.setSiguienteVenta(null);
+        ant.setSiguienteAlmacen(p.getSiguienteAlmacen());
+        
+        System.gc();
+                    
+       }
+    
+    public void mostrarAlmacen (NodoAlmacen cab){
+        
+        NodoAlmacen p = cab.getSiguienteAlmacen();
+        
+        while( p != cab){
+            System.out.print("Id almacen: " + p.getIdAlmacen() +' '+ "Nombre almácen" + p.getNombreAlmacen());
+            //totalVentas(p);
+            p.getSiguienteAlmacen();
+        }
+        
+    }
+            
    
     
 }
