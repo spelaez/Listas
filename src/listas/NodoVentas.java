@@ -109,4 +109,11 @@ public class NodoVentas {
         return a; 
     }
     
+    public void actualizarInformacion(NodoVentas x, int cant){
+    
+    x.setCantidadVendida(x.getCantidadVendida() + cant);
+    x.setPrecioPromedio((x.getCantidadVendida() * x.getPrecioPromedio() + cant * x.getNodoProductos().getCostoUnidad()) / (x.getCantidadVendida() + cant));
+    
+    }
+    
 }
