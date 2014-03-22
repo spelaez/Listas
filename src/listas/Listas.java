@@ -7,11 +7,10 @@
 package listas;
 
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.Scanner;
 /**
  *
- * @author Catalina
+ * @author Catalina Y Santiago
  */
 public class Listas {
 
