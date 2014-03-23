@@ -55,6 +55,106 @@ public class NodoVentas {
         this.siguienteVenta = siguienteVenta;
     }
     
+    public boolean existeProducto(NodoProductos x, NodoVentas p){
+        
+        
+        while (( p != null) && ( x.getIdProducto() != p.getNodoProductos().getIdProducto())){
+        
+                p = p.getSiguienteVenta();       
+        }
+        if (p == null)
+            return false;
+        else
+        return x.getIdProducto() != p.getNodoProductos().getIdProducto();
+           
+    }
+    
+    
+    public void insertarVentaOrdenado(NodoAlmacen cab, NodoVentas x, NodoProductos p, int cant){
+    
+    NodoVentas n,  a;
+    
+    n = new NodoVentas(p,  cant, p.getCostoUnidad());
+    if (cab.getSiguienteVenta() == null){
+        n.setSiguienteVenta(null);
+        cab.setSiguienteVenta(n);
+    }
+    else{
+        a = buscarAnterior(cab, n.getNodoProductos().getIdProducto());    
+        n.setSiguienteVenta(a.getSiguienteVenta());
+        a.setSiguienteVenta(n);
+            
+        }
+    }
+    
+    public NodoVentas buscarAnterior(NodoAlmacen cab, int id){
+    
+    int sw = 0;
+    NodoVentas p, a;
+    p = cab.getSiguienteVenta();
+    a = null;
+        while(p != null && sw == 0){
+        if(p.getNodoProductos().getIdProducto() < id ){
+        
+         a = p;
+         p = p.getSiguienteVenta();
+        }
+        else {
+        
+        sw = 1;
+        
+        }
+        }
+        
+        return a; 
+    }
+    
+    public void actualizarInformacion(NodoVentas x, int cant){
+    
+    x.setCantidadVendida(x.getCantidadVendida() + cant);
+    x.setPrecioPromedio((x.getCantidadVendida() * x.getPrecioPromedio() + cant * x.getNodoProductos().getCostoUnidad()) / (x.getCantidadVendida() + cant));
+    
+    }
+    
+    
+    public void registrarVenta(int idA, int idP, int cant, int precio){
+    
+        if (VectorBodega.verificarExistencia(idP, cant)){
+        
+         boolean x = existeProducto(idP, idA);
+           if (x == false){
+           
+               insertarVentaOrdenado(cab, idA, idP, cant);
+           
+           }
+           else{
+           
+               actualizarInformacion(idP, cant);
+           }
+            
+        }else{
+        
+        System.out.print ("No hay suficiente cantidad del producto");
+        
+        }
+    
+    }
+    
+    public static void totalVentas(NodoAlmacen p){
+    
+    NodoVentas x = p.getSiguienteVenta();
+    double suma = 0;
+    
+    while (x != null){
+    
+        suma = suma + (x.getCantidadVendida() * x.getNodoProductos().getCostoUnidad());
+        x = x.getSiguienteVenta();
+    }
+    
+    System.out.println("Total ventas: " + suma );
+    }
+    
+    
     
     
 }
