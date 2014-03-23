@@ -12,7 +12,7 @@ package listas;
  */
 public class VectorBodega {
     private int N;
-    private final NodoProductos[] productos;
+    private static NodoProductos[] productos;
     
     
     public VectorBodega(int n){
@@ -27,8 +27,14 @@ public class VectorBodega {
     return productos[p];
     }
     
-    public static boolean verificarExistencia(NodoProductos x, int cant){
-        return x.getExistencias()>= cant;
-    
-    }
+    public static NodoProductos buscarProducto(int id){
+        int i;
+        for (i = 0; i < productos.length; i++){
+        
+        if (productos[i].getIdProducto() == id){
+                return productos[i];         
+            }  
+        }  
+        return null;
+      }
 }

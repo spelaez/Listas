@@ -119,22 +119,16 @@ public class NodoVentas {
     
     public void registrarVenta(int idA, int idP, int cant, int precio){
     
-        if (VectorBodega.verificarExistencia(idP, cant)){
         
-         boolean x = existeProducto(idP, idA);
-           if (x == false){
-           
-               insertarVentaOrdenado(cab, idA, idP, cant);
-           
-           }
-           else{
-           
-               actualizarInformacion(idP, cant);
-           }
+        NodoProductos p = VectorBodega.buscarProducto(idP);
+         
+           if (p.getExistencias() >= cant){
             
-        }else{
+               
+            }
+           else{
         
-        System.out.print ("No hay suficiente cantidad del producto");
+           System.out.print ("No hay suficiente cantidad del producto, en existencia: " + p.getExistencias());
         
         }
     
