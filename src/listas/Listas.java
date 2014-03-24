@@ -7,17 +7,43 @@
 package listas;
 
 
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Scanner;
+import javax.swing.JFrame;
 /**
  *
  * @author Catalina Y Santiago
  */
-public class Listas {
+public class Listas extends Canvas{
 
+    
+    @Override
+    public void paint(Graphics g){
+        
+        int i = 0;
+        int x= 10, y= 10, ancho= 100, alto= 50;
+        
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y, ancho, alto);
+        g.drawString("Holi",(int)( 50),(int)(30));
+        g.drawLine(x, y+30, ancho+10, y+30);
+        g.drawString("Chai", 50, 55);
+        
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        JFrame jf = new JFrame("Almacenes");
+        Listas lst = new Listas ();
+        jf.setSize(800, 600);
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.add(lst);
+        
+        
         NodoAlmacen L;
         VectorBodega bodega = new VectorBodega(100);
         L = new NodoAlmacen();
