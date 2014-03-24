@@ -70,17 +70,17 @@ public class NodoVentas {
     }
     
     
-    public void insertarVentaOrdenado(NodoAlmacen cab, NodoVentas x, NodoProductos p, int cant){
+    public void insertarVentaOrdenado(NodoAlmacen alm, NodoVentas x, NodoProductos p, int cant){
     
     NodoVentas n,  a;
     
     n = new NodoVentas(p,  cant, p.getCostoUnidad());
-    if (cab.getSiguienteVenta() == null){
+    if (alm.getSiguienteVenta() == null){
         n.setSiguienteVenta(null);
-        cab.setSiguienteVenta(n);
+        alm.setSiguienteVenta(n);
     }
     else{
-        a = buscarAnterior(cab, n.getNodoProductos().getIdProducto());    
+        a = buscarAnterior(alm, n.getNodoProductos().getIdProducto());    
         n.setSiguienteVenta(a.getSiguienteVenta());
         a.setSiguienteVenta(n);
             
@@ -117,15 +117,20 @@ public class NodoVentas {
     }
     
     
-    public void registrarVenta(int idA, int idP, int cant, int precio){
+    public void registrarVenta(NodoAlmacen alm, int idP, int cant, int precio){
     
         
         NodoProductos p = VectorBodega.buscarProducto(idP);
          
            if (p.getExistencias() >= cant){
             
-               
+               if (existeProducto(p, this)){
+                   actualizarInformacion(this, cant);
             }
+               else{
+                   insertarVentaOrdenado(alm, this, p, cant);
+               }
+           }
            else{
         
            System.out.print ("No hay suficiente cantidad del producto, en existencia: " + p.getExistencias());
