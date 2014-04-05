@@ -95,13 +95,17 @@ public class NodoAlmacen {
                         }
             
         }
+        if(L == L.getSiguienteAlmacen()){
+        
+            A = L;
+        }
         return (A);        
         
     }
     
-    public void eliminarAlmacen(NodoAlmacen cab, int id){
+    public static void eliminarAlmacen(NodoAlmacen cab, int id){
         
-        NodoAlmacen p = cab.getSiguienteAlmacen(), ant=p ;
+        NodoAlmacen p = cab.getSiguienteAlmacen(), ant=cab ;
                
         while (p.getIdAlmacen() != id){
             ant = p;

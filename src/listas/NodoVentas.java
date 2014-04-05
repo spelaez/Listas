@@ -55,7 +55,7 @@ public class NodoVentas {
         this.siguienteVenta = siguienteVenta;
     }
     
-    public boolean existeProducto(NodoProductos x, NodoVentas p){
+    public static boolean existeProducto(NodoProductos x, NodoVentas p){
         
         
         while (( p != null) && ( x.getIdProducto() != p.getNodoProductos().getIdProducto())){
